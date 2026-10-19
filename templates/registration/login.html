@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | JobHub</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .login-box {
+            background: white;
+            width: 350px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #00000015;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2563eb;
+        }
+
+        p {
+            color: #555;
+        }
+
+        input {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 18px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-box">
+        <h1>JobHub</h1>
+        <h2>Login</h2>
+
+        {% if form.errors %}
+            <p style="color: red;">Invalid username or password.</p>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <p>
+                <label for="id_username">Username</label>
+                {{ form.username }}
+            </p>
+
+            <p>
+                <label for="id_password">Password</label>
+                {{ form.password }}
+            </p>
+
+            <input type="hidden" name="next" value="{{ next }}">
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+</body>
+</html>

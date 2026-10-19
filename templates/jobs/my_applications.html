@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Applications | JobHub</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            margin: 0;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #1e293b;
+        }
+
+        .application-card {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .application-card h2 {
+            color: #2563eb;
+            margin-top: 0;
+        }
+
+        .back-link {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .empty-message {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .application-card {
+    border: 1px solid #e2e8f0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.application-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-weight: 600;
+}
+
+.empty-message a {
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+}
+    </style>
+</head>
+
+<body>
+    <h1>My Applications</h1>
+
+    <a class="back-link" href="{% url 'jobs_list' %}">← Back to Jobs</a>
+
+    {% for application in applications %}
+        <div class="application-card">
+            <h2>{{ application.job.title }}</h2>
+
+            <p><strong>Company:</strong> {{ application.job.company }}</p>
+            <p><strong>Location:</strong> {{ application.job.location }}</p>
+            <p><strong>Applicant:</strong> {{ application.applicant_name }}</p>
+            <p><strong>Email:</strong> {{ application.applicant_email }}</p>
+            <p><strong>Applied on:</strong> {{ application.applied_at|date:"d M Y" }}</p>
+        </div>
+    {% empty %}
+        <div class="empty-message">
+            <p>You haven't applied for any jobs yet.</p>
+            <a href="{% url 'jobs_list' %}">Browse available jobs</a>
+        </div>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruiter Dashboard | JobHub</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            margin: 0;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #1e293b;
+        }
+
+        .job-card {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .job-card h2 {
+            color: #2563eb;
+        }
+
+        .back-link {
+            color: #2563eb;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Recruiter Dashboard</h1>
+    <p>Manage your job postings on JobHub.</p>
+
+    <a class="back-link" href="{% url 'jobs_list' %}">← Back to Jobs</a>
+    <a href="{% url 'post_job' %}" class="back-link">+ Post New Job</a>
+    <h2>Available Job Postings</h2>
+
+    {% for job in jobs %}
+        <div class="job-card">
+            <h2>{{ job.title }}</h2>
+            <p><strong>Company:</strong> {{ job.company }}</p>
+            <p><strong>Location:</strong> {{ job.location }}</p>
+            <p><strong>Job type:</strong> {{ job.job_type }}</p>
+            <a href="{% url 'edit_job' job.id %}">Edit</a>
+|
+<a href="{% url 'delete_job' job.id %}">Delete</a>
+        </div>
+    {% empty %}
+        <p>No jobs have been posted yet.</p>
+    {% endfor %}
+</body>
+</html>

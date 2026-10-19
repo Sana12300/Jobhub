@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for {{ job.title }} | JobHub</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        nav {
+            background: #111827;
+            padding: 20px 8%;
+            color: white;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav span {
+            color: #3b82f6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #00000010;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        .job-info {
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        form p {
+            margin-bottom: 20px;
+        }
+
+        input, textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        input[type="file"] {
+            border: none;
+            padding-left: 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 20px;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .errorlist {
+            color: #dc2626;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="{% url 'jobs_list' %}">Job<span>Hub</span></a>
+    </nav>
+
+    <div class="container">
+        <h1>Apply for Job</h1>
+
+        <div class="job-info">
+            <h3>{{ job.title }}</h3>
+            <p>{{ job.company }} · {{ job.location }}</p>
+        </div>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit">Submit Application</button>
+        </form>
+
+        <a class="back" href="{% url 'job_detail' job.id %}">
+            ← Back to Job Details
+        </a>
+    </div>
+</body>
+</html>

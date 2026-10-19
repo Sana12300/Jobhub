@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Submitted | JobHub</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #222;
+        }
+
+        .success-container {
+            max-width: 500px;
+            width: 85%;
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #00000010;
+            text-align: center;
+        }
+
+        .check {
+            font-size: 55px;
+            color: #16a34a;
+        }
+
+        h1 {
+            color: #15803d;
+        }
+
+        p {
+            line-height: 1.7;
+            color: #555;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 22px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        a:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="success-container">
+        <div class="check">✓</div>
+
+        <h1>Application Submitted!</h1>
+
+        <p>
+            Your application for
+            <strong>{{ job.title }}</strong>
+            at <strong>{{ job.company }}</strong>
+            has been submitted successfully.
+        </p>
+
+        <p>Thank you for applying through JobHub.</p>
+
+        <a href="{% url 'jobs_list' %}">Browse More Jobs</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ job.title }} | JobHub</title>
+
+    <style>
+        
+        .apply-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .apply-button:hover {
+            background: #1d4ed8;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+        }
+
+        nav {
+            background: #111827;
+            padding: 20px 8%;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #3b82f6;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #00000010;
+        }
+
+        h1 {
+            color: #111827;
+        }
+
+        .company {
+            color: #555;
+            font-size: 18px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e8f0ff;
+            color: #245ac4;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin: 5px 5px 5px 0;
+        }
+
+        section {
+            margin-top: 28px;
+            line-height: 1.7;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 25px;
+            color: #2563eb;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">Job<span>Hub</span></div>
+        <a href="{% url 'jobs_list' %}">Back to Jobs</a>
+    </nav>
+
+    <div class="container">
+        <h1>{{ job.title }}</h1>
+        <p class="company">{{ job.company }}</p>
+
+        <p>📍 {{ job.location }}</p>
+        <p>💰 {{ job.salary }}</p>
+
+        <span class="tag">{{ job.job_type }}</span>
+        <span class="tag">{{ job.experience }}</span>
+
+        <section>
+            <h2>Job Description</h2>
+            <p>{{ job.description|linebreaks }}</p>
+        </section>
+
+        <section>
+            <h2>Responsibilities</h2>
+            <p>{{ job.responsibilities|linebreaks }}</p>
+        </section>
+
+        <section>
+            <h2>Requirements</h2>
+            <p>{{ job.requirements|linebreaks }}</p>
+        </section>
+
+        <section>
+            <h2>Required Skills</h2>
+            <p>{{ job.skills }}</p>
+        </section>
+        
+        <a href="{% url 'apply_job' job.id %}" class="apply-button">
+            Apply Now
+        </a>
+
+        <a class="back" href="{% url 'jobs_list' %}">
+            ← Back to All Jobs
+        </a>
+    </div>
+</body>
+</html>
